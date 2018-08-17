@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+body {
+	background-image: url(../images/demo.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+	color: #fff;
+}
+
+a.x-btn {
+	color: #fff;
+}
+
+span.x-user:before {
+	display: inline-block;
+	background: #fff;
+	width: 30px;
+	content: "";
+	height: 30px;
+	border-radius: 15px;
+	vertical-align: text-bottom;
+	margin-right: 5px;
+	background-image: url(../images/demo.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto 100%;
+}

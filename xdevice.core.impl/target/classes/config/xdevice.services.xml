@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+	xmlns:jaxrsclient="http://cxf.apache.org/jaxrs-client"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans.xsd 
+            http://cxf.apache.org/jaxws 
+            http://cxf.apache.org/schemas/jaxws.xsd
+            http://cxf.apache.org/jaxrs
+            http://cxf.apache.org/schemas/jaxrs.xsd
+            http://cxf.apache.org/jaxrs-client
+            http://cxf.apache.org/schemas/jaxrs-client.xsd">
+
+	<!-- 配置REST服务 -->
+	<jaxrs:server id="restServer" address="/xdevice">
+		<jaxrs:serviceBeans>
+			<ref bean="deviceApiService" />
+		</jaxrs:serviceBeans>
+		<!-- 输入日志拦截器 -->
+		<jaxrs:inInterceptors>
+			<ref bean="loggingInInterceptor" />
+		</jaxrs:inInterceptors>
+		<!-- 输出日志拦截器 -->
+		<jaxrs:outInterceptors>
+			<ref bean="loggingOutInterceptor" />
+		</jaxrs:outInterceptors>
+	</jaxrs:server>
+	<!-- 输入日志拦截器 -->
+	<bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>
+	<!-- 输出日志拦截器 -->
+	<bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>
+</beans>

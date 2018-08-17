@@ -1,0 +1,5 @@
+com\xxx\it\xdevice\dao\IDeviceDao.class
+com\xxx\it\xdevice\service\IDeviceService.class
+com\xxx\it\xdevice\vo\BaseResource.class
+com\xxx\it\xdevice\api\service\IDeviceApiService.class
+com\xxx\it\xdevice\vo\DeviceVO.class

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.it.xdevice.dao.IDeviceDao">
+	<resultMap id="BaseResultMap" type="com.xxx.it.xdevice.vo.DeviceVO">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="device_brand" property="deviceBrand" jdbcType="VARCHAR" />
+		<result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+		<result column="device_model" property="deviceModel" jdbcType="VARCHAR" />
+		<result column="device_os_version" property="deviceOSVersion" jdbcType="VARCHAR" />
+		<result column="created_by" property="createdBy"/>
+		<result column="creation_date" property="creationDate"/>
+		<result column="last_update_by" property="lastUpdateBy"/>
+		<result column="last_update_date" property="lastUpdateDate"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, device_name, device_brand
+	</sql>
+	<sql id="base_query_list">
+		SELECT * FROM dms_device
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		
+		from dms_device
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from dms_device
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.xxx.it.xdevice.vo.DeviceVO">
+		insert into dms_device (id, device_name,
+		device_brand
+		)
+		values (#{id,jdbcType=VARCHAR}, #{device_name,jdbcType=VARCHAR},
+		#{device_brand,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.xxx.it.xdevice.vo.DeviceVO">
+		insert into dms_device
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="device_name != null">
+				device_name,
+			</if>
+			<if test="device_brand != null">
+				device_brand,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="device_name != null">
+				#{device_name,jdbcType=VARCHAR},
+			</if>
+			<if test="device_brand != null">
+				#{device_brand,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.xxx.it.xdevice.vo.DeviceVO">
+		update dms_device
+		<set>
+			<if test="device_name != null">
+				device_name = #{device_name,jdbcType=VARCHAR},
+			</if>
+			<if test="device_brand != null">
+				device_brand = #{device_brand,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.xxx.it.xdevice.vo.DeviceVO">
+		update dms_device
+		set
+		device_name = #{device_name,jdbcType=VARCHAR},
+		device_brand = #{device_brand,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="findAll" resultMap="BaseResultMap">
+		<include refid="base_query_list" />
+	</select>
+</mapper>
